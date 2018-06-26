@@ -36,8 +36,12 @@ from tensorflow.contrib.tensorboard.plugins import projector
 import json
 from matplotlib.pylab import mpl
 dr = os.path.dirname(os.path.abspath(__file__))
+
+
 dr_out = os.path.join(dr,'output')
+os.mkdirs(dr_out,0777)
 dr_log = os.path.join(dr,'log')
+os.mkdirs(dr_out,0777)
 # Give a folder path as an argument with '--log_dir' to save
 # TensorBoard summaries. Default is a log folder in current directory.
 
