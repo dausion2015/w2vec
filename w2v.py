@@ -37,10 +37,10 @@ import json
 from matplotlib.pylab import mpl
 dr = os.path.dirname(os.path.abspath(__file__))
 
-
-dr_out = 'output'
+bse_dir = 'output'
+dr_out = os.path.join(bse_dir,'creat')
 os.mkdir(dr_out,0o777)
-dr_log = 'log'
+dr_log =  os.path.join(bse_dir,'log')
 os.mkdir(dr_log,0o777)
 # Give a folder path as an argument with '--log_dir' to save
 # TensorBoard summaries. Default is a log folder in current directory.
