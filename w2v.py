@@ -37,6 +37,8 @@ from tensorflow.contrib.tensorboard.plugins import projector
 import json
 from matplotlib.pylab import mpl
 from matplotlib import pyplot 
+import sys
+import codecs
 pyplot.switch_backend('agg')
 dr = os.path.dirname(os.path.abspath(__file__))
 
@@ -103,12 +105,13 @@ print('start running at',start)
 # import matplotlib.pyplot as plt
 # plt.switch_backend('agg')
 # filename = maybe_download('text8.zip', 31344016)   # 执行函数并返回文件名
-import sys
-import codecs
+
 
 # reload(sys)
 # sys.setdefaultencoding('utf8')
-# sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
+print('sys.stdout.encoding',sys.stdout.encoding)
+sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
+print('sys.stdout.encoding',sys.stdout.encoding)
 # 既然字符编码、代码都没有错，那么问题肯定出在print上面。这时我开始关注错误信息中的ascii。
 # 因为在一般python3环境中，输出时会将Unicode转化为utf-8。为了解开这个疑惑，查看了输出编码
 
