@@ -1,9 +1,10 @@
+#-*-coding:UTF-8-*-
 # Copyright 2015 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-#
+# 
 #     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
@@ -175,7 +176,7 @@ with open(redic_dir,'w',encoding='utf8') as f:
 # with open('E:\\week11w2v\\reverse_dictionary.json','w',encoding='utf8') as f:
 #     f.write(json.dumps(reverse_dictionary))
 del vocabulary  # Hint to reduce memory.
-print('Most common words (+UNK)', count[:5])  #第一个['UNK',unk_count] 词频高的前4个
+print('Most common words (+UNK)', count[:5].)  #第一个['UNK',unk_count] 词频高的前4个
 print('Sample data', data[:10], [reverse_dictionary[i] for i in data[:10]])  #data[:10]：vocabulary 前10个元素对应的编码  [reverse_dictionary[i] for i in data[:10]]：vocabulary前10个单词
 
 data_index = 0
