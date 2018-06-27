@@ -39,9 +39,9 @@ dr = os.path.dirname(os.path.abspath(__file__))
 
 
 dr_out = os.path.join(dr,'output')
-os.mkdir(dr_out)
+os.makedirs(dr_out,0o777)
 dr_log = os.path.join(dr,'log')
-os.mkdir(dr_out)
+os.mkdir(dr_log,0o777)
 # Give a folder path as an argument with '--log_dir' to save
 # TensorBoard summaries. Default is a log folder in current directory.
 
