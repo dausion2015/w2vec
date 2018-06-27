@@ -36,6 +36,8 @@ import tensorflow as tf
 from tensorflow.contrib.tensorboard.plugins import projector
 import json
 from matplotlib.pylab import mpl
+from matplotlib.pyplot import plot 
+plot.switch_backend('agg')
 dr = os.path.dirname(os.path.abspath(__file__))
 
 bse_dir = 'output'
@@ -94,14 +96,27 @@ print('start running at',start)
   #   raise Exception('Failed to verify ' + local_filename +
   #                   '. Can you get to it with a browser?')
   # return local_filename  #返回文件名
+# 二、原因：matplotlib的默认backend是TkAgg，而FltAgg、GTK、GTKCairo、TkAgg、Wx和WxAgg
+# 这几个backend都要求有GUI图形界面，所以在ssh操作的时候会报错。
+# 三、解决办法：在导入matplotlib的时候指定不需要GUI的backend（Agg、Cairo、PS、PDF和SVG）。例如：
 
+# import matplotlib.pyplot as plt
+# plt.switch_backend('agg')
 # filename = maybe_download('text8.zip', 31344016)   # 执行函数并返回文件名
 import sys
 import codecs
 
 # reload(sys)
 # sys.setdefaultencoding('utf8')
-sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
+# sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
+# 既然字符编码、代码都没有错，那么问题肯定出在print上面。这时我开始关注错误信息中的ascii。
+# 因为在一般python3环境中，输出时会将Unicode转化为utf-8。为了解开这个疑惑，查看了输出编码
+
+# >>>import sys
+# >>>sys.stdout.encoding
+# 'ANSI_X3.4-1968'
+
+# 竟然是ANSI_X3.4-1968，所以任何中文都会报错。哈哈，终于定位问题啦。
 # Read the data into a list of strings.
 filename = '/data/dausion2015/w2vec/sc.zip'
 def read_data(filename):                     #创建 zipfile.ZipFile对象 用zipfile.ZipFile处理压缩文件 压缩解压  处理括号里的'zip'
