@@ -96,7 +96,11 @@ print('start running at',start)
   # return local_filename  #返回文件名
 
 # filename = maybe_download('text8.zip', 31344016)   # 执行函数并返回文件名
-
+import sys
+ 
+reload(sys)
+sys.setdefaultencoding('utf8')
+sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 # Read the data into a list of strings.
 filename = '/data/dausion2015/w2vec/sc.zip'
 def read_data(filename):                     #创建 zipfile.ZipFile对象 用zipfile.ZipFile处理压缩文件 压缩解压  处理括号里的'zip'
