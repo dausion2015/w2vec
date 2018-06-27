@@ -40,8 +40,8 @@ from matplotlib.pylab import mpl
 from matplotlib import pyplot 
 import sys
 import codecs
-mpl.rcParams['font.sans-serif']=['SimHei'] # 指定默认字体
-mpl.rcParams['axes.unicode_minus']=False  # 解决保存图像是负号'-'显示为方块的问题
+pyplot.rcParams['font.sans-serif']=['SimHei'] # 指定默认字体
+pyplot.rcParams['axes.unicode_minus']=False  # 解决保存图像是负号'-'显示为方块的问题
 pyplot.switch_backend('agg')
 dr = os.path.dirname(os.path.abspath(__file__))
 
@@ -332,7 +332,7 @@ with graph.as_default():
   saver = tf.train.Saver()
 
 # Step 5: Begin training.
-num_steps = 100001
+num_steps = 2000
 
 with tf.Session(graph=graph) as session:
   # Open a writer to write summaries.
@@ -388,7 +388,7 @@ with tf.Session(graph=graph) as session:
           log_str = '%s %s,' % (log_str, close_word)#利用虚幻拼接字符串
         print(log_str)
   final_embeddings = normalized_embeddings.eval()#相当于sees.run（） 运行后final_embeddings是数值
-
+  np.save(os.path.join(dr_out,'embedding.npy'), final_embeddings)
   # Write corresponding labels for the embeddings.
   with open(dr_log+ '/metadata.tsv', 'w',encoding='utf8',errors='ignore') as f:
     for i in range(vocabulary_size):
