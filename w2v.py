@@ -97,9 +97,10 @@ print('start running at',start)
 
 # filename = maybe_download('text8.zip', 31344016)   # 执行函数并返回文件名
 import sys
- 
-reload(sys)
-sys.setdefaultencoding('utf8')
+import codecs
+
+# reload(sys)
+# sys.setdefaultencoding('utf8')
 sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 # Read the data into a list of strings.
 filename = '/data/dausion2015/w2vec/sc.zip'
