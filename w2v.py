@@ -111,7 +111,7 @@ print('start running at',start)
 # sys.setdefaultencoding('utf8')
 print('sys.stdout.encoding',sys.stdout.encoding)
 sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
-print('sys.stdout.encoding',sys.stdout.encoding)
+
 # 既然字符编码、代码都没有错，那么问题肯定出在print上面。这时我开始关注错误信息中的ascii。
 # 因为在一般python3环境中，输出时会将Unicode转化为utf-8。为了解开这个疑惑，查看了输出编码
 
