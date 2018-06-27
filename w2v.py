@@ -439,7 +439,7 @@ try:
   plot_only = 500                                                 #将final_embeddings前500行用tsne降维成2d数据作为坐标embedding数据的生成是按照降序排列高频
   low_dim_embs = tsne.fit_transform(final_embeddings[:plot_only, :])#字生成的 两个字典点也是按照高频字生成的并且embedding每个字的索引和dict每个字的key或者value相同
   labels = [reverse_dictionary[i] for i in range(plot_only)]       #取出reverse_dictionary中和low_dim_embs对应的字 字的顺序和low_dim_embs每行代表的字一样 所以用将为的数据当坐标 在ed空间表示字 但是他和原来额字还是对应上的 在二维图上打印字
-  print(labels[:55])
+  print('******************************',labels[:15])
   plot_with_labels(low_dim_embs, labels, os.path.join(dr_out, 'tsne.png'))#画图并保存
 
 except ImportError as ex:
