@@ -36,8 +36,8 @@ import tensorflow as tf
 from tensorflow.contrib.tensorboard.plugins import projector
 import json
 from matplotlib.pylab import mpl
-from matplotlib.pyplot import plot 
-plot.switch_backend('agg')
+from matplotlib import pyplot 
+pyplot.switch_backend('agg')
 dr = os.path.dirname(os.path.abspath(__file__))
 
 bse_dir = 'output'
