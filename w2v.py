@@ -180,8 +180,8 @@ with open(redic_dir,'w',encoding='utf8') as f:
 # with open('E:\\week11w2v\\reverse_dictionary.json','w',encoding='utf8') as f:
 #     f.write(json.dumps(reverse_dictionary))
 del vocabulary  # Hint to reduce memory.
-print('Most common words (+UNK)', [(word[0].decode(),word[1]) for word in count[:5]])  #第一个['UNK',unk_count] 词频高的前4个
-print('Sample data', data[:10], [reverse_dictionary[i].decode() for i in data[:10]])  #data[:10]：vocabulary 前10个元素对应的编码  [reverse_dictionary[i] for i in data[:10]]：vocabulary前10个单词
+print('Most common words (+UNK)', count[:5])  #第一个['UNK',unk_count] 词频高的前4个
+print('Sample data', data[:10], [reverse_dictionary[i] for i in data[:10]])  #data[:10]：vocabulary 前10个元素对应的编码  [reverse_dictionary[i] for i in data[:10]]：vocabulary前10个单词
 
 data_index = 0
 
@@ -222,8 +222,8 @@ def generate_batch(batch_size, num_skips, skip_window):
 
 batch, labels = generate_batch(batch_size=8, num_skips=2, skip_window=1) #生成batch, labels是训练样本一个batch能装4个inputword生成的样本
 for i in range(8):
-  print(batch[i], reverse_dictionary[batch[i]].decode(), '->', labels[i, 0], #打印batch.labels里的编码 和字和batch编码对用的单词 label的编码和字
-        reverse_dictionary[labels[i, 0]].decode())
+  print(batch[i], reverse_dictionary[batch[i]], '->', labels[i, 0], #打印batch.labels里的编码 和字和batch编码对用的单词 label的编码和字
+        reverse_dictionary[labels[i, 0]])
 
 # Step 4: Build and train a skip-gram model.
 
@@ -365,7 +365,7 @@ with tf.Session(graph=graph) as session:
         for k in xrange(top_k):
           close_word = reverse_dictionary[nearest[k]]#k 0-topk-1  nearest存着降序排列的和当前valid_word最相近的topk各字在高频字中的序号也就是reversedict的key
           log_str = '%s %s,' % (log_str, close_word)#利用虚幻拼接字符串
-        print(log_str.decode())
+        print(log_str)
   final_embeddings = normalized_embeddings.eval()#相当于sees.run（） 运行后final_embeddings是数值
 
   # Write corresponding labels for the embeddings.
