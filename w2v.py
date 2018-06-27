@@ -36,9 +36,12 @@ import tensorflow as tf
 from tensorflow.contrib.tensorboard.plugins import projector
 import json
 from matplotlib.pylab import mpl
+
 from matplotlib import pyplot 
 import sys
 import codecs
+mpl.rcParams['font.sans-serif']=['SimHei'] # 指定默认字体
+mpl.rcParams['axes.unicode_minus']=False  # 解决保存图像是负号'-'显示为方块的问题
 pyplot.switch_backend('agg')
 dr = os.path.dirname(os.path.abspath(__file__))
 
@@ -422,7 +425,8 @@ def plot_with_labels(low_dim_embs, labels, filename):
         ha='right',
         va='bottom')
   plt.savefig(filename)
-mpl.rcParams['font.sans-serif']=[u'SimHei'] # 指定默认字体
+
+mpl.rcParams['font.sans-serif']=['SimHei'] # 指定默认字体
 mpl.rcParams['axes.unicode_minus']=False  # 解决保存图像是负号'-'显示为方块的问题
 try:
   # pylint: disable=g-import-not-at-top
